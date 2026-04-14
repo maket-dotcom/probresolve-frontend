@@ -21,7 +21,7 @@ function parseRawAmount(formatted: string): string {
   return noDecimal.replace(/[^0-9]/g, "");
 }
 
-const inputCls = "w-full bg-dark-bg border border-dark-border text-dark-pop rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-brand-navy placeholder:text-dark-muted";
+const inputCls = "w-full bg-dark-s0 border border-dark-border text-dark-pop rounded-md px-3 py-2 text-sm focus:outline-none focus:border-brand-teal placeholder:text-dark-muted";
 const labelCls = "block text-sm font-medium text-dark-pop mb-1";
 
 function AmountLostInput() {
@@ -172,10 +172,10 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
     <form
       onSubmit={handleSubmit}
       encType="multipart/form-data"
-      className="bg-dark-surface rounded-lg border border-dark-border p-6 space-y-5"
+      className="bg-dark-s1 rounded-xl border border-dark-border p-6 space-y-5"
     >
       {error && (
-        <div className="border border-red-800 bg-red-900/20 rounded p-3 text-sm text-red-400">
+        <div className="border border-red-800 bg-red-900/20 rounded-md p-3 text-sm text-red-400">
           {error}
         </div>
       )}
@@ -295,7 +295,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
       <AmountLostInput />
 
       {/* Contact info */}
-      <div className="border border-dark-border rounded-lg p-4 bg-dark-bg space-y-3">
+      <div className="border border-dark-border rounded-xl p-4 bg-dark-s0 space-y-3">
         <p className="text-sm font-medium text-dark-pop">
           Contact Info <span className="text-red-500">*</span>
         </p>
@@ -333,7 +333,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
             <span className="text-dark-muted font-normal ml-1">(private)</span>
           </label>
           <div className="flex">
-            <span className="inline-flex items-center px-3 py-2 border border-r-0 border-dark-border rounded-l bg-dark-border text-sm text-dark-muted select-none">
+            <span className="inline-flex items-center px-3 py-2 border border-r-0 border-dark-border rounded-l-md bg-dark-border text-sm text-dark-muted select-none">
               +91
             </span>
             <input
@@ -344,7 +344,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
               maxLength={10}
               pattern="[6-9][0-9]{9}"
               placeholder="9876543210"
-              className="flex-1 bg-dark-bg border border-dark-border text-dark-pop rounded-r px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-brand-navy placeholder:text-dark-muted"
+              className="flex-1 bg-dark-s0 border border-dark-border text-dark-pop rounded-r-md px-3 py-2 text-sm focus:outline-none focus:border-brand-teal placeholder:text-dark-muted"
             />
           </div>
           <p className="mt-1 text-xs text-dark-muted">10-digit Indian mobile number</p>
@@ -366,7 +366,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
         {selectedFiles.length > 0 && (
           <ul className="mb-2 space-y-1">
             {selectedFiles.map((f, i) => (
-              <li key={i} className="flex items-center justify-between bg-dark-bg border border-dark-border rounded px-3 py-1.5 text-sm">
+              <li key={i} className="flex items-center justify-between bg-dark-s0 border border-dark-border rounded-md px-3 py-1.5 text-sm">
                 <span className="truncate text-dark-pop">📎 {f.name} <span className="text-dark-muted text-xs">({(f.size / 1024 / 1024).toFixed(2)} MB)</span></span>
                 <button
                   type="button"
@@ -388,7 +388,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
           disabled={selectedFiles.length >= MAX_FILES}
           accept="image/jpeg,image/png,image/gif,image/webp,image/heic,image/heif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain,.jpg,.jpeg,.png,.gif,.webp,.heic,.heif,.pdf,.doc,.docx,.xls,.xlsx,.txt"
           onChange={handleFileChange}
-          className="block w-full text-sm text-dark-muted file:mr-3 file:py-1.5 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-brand-navy/30 file:text-dark-pop hover:file:bg-brand-navy/50 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+          className="block w-full text-sm text-dark-muted file:mr-3 file:py-1.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-dark-s-hover file:text-dark-pop hover:file:bg-dark-border cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
         />
 
         <p className="mt-1 text-xs text-dark-muted">
@@ -399,7 +399,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
       </div>
 
       {/* Deterrence warning */}
-      <div className="border border-amber-800 bg-amber-900/20 rounded p-3 text-xs text-amber-400">
+      <div className="border border-amber-800 bg-amber-900/20 rounded-md p-3 text-xs text-amber-400">
         ⚠️ False or defamatory complaints are a violation of our terms and will be removed.
         Your IP address is logged with every submission.
       </div>
@@ -408,7 +408,7 @@ export default function NewProblemForm({ domains }: { domains: Domain[] }) {
         <button
           type="submit"
           disabled={isPending}
-          className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold py-2.5 rounded transition-colors disabled:opacity-50"
+          className="w-full bg-brand-teal hover:bg-brand-teal-h text-white font-semibold py-2.5 rounded-full transition-colors disabled:opacity-50"
         >
           {isPending ? "Submitting…" : "Submit Complaint"}
         </button>

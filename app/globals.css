@@ -1,24 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-navy:   #1F3B5C;
-  --color-brand-green:  #31AF77;
-  --color-brand-orange: #E8690A;
-  --color-brand-slate:  #607089;
-  --color-brand-mist:   #F4F8F7;
-  --color-brand-smoke:  #C8DEDD;
-  --color-brand-ink:    #111827;
+  /* Brand */
+  --color-brand-teal:    #2ec4b6;
+  --color-brand-teal-h:  #26a89c;
+  --color-brand-green:   #22c55e;
+  --color-brand-orange:  #E8690A;
+  --color-brand-warning: #f59e0b;
+  --color-brand-danger:  #ef4444;
 
-  --color-dark-bg:      #0d1117;
-  --color-dark-surface: #161b22;
-  --color-dark-border:  #30363d;
-  --color-dark-muted:   #8b949e;
-  --color-dark-pop:     #e6edf3;
+  /* Polymarket dark surfaces */
+  --color-dark-bg:       #030712;
+  --color-dark-s0:       #111318;
+  --color-dark-s1:       #181d21;
+  --color-dark-s2:       #1e2428;
+  --color-dark-s-hover:  #242b32;
+  --color-dark-border:   #1f2937;
+  --color-dark-muted:    #9ca3af;
+  --color-dark-tertiary: #586879;
+  --color-dark-pop:      #e5e5e5;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: #0d1117;
-  color: #e6edf3;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #030712;
+  color: #e5e5e5;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: #e5e5e5;
 }
 
 /* Make native date-picker icon visible on dark bg */
@@ -30,10 +53,26 @@ input[type="date"] {
   color-scheme: dark;
 }
 
+/* Scrollbar hide utility */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Minimal custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2ec4b6;
 }

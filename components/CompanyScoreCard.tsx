@@ -6,6 +6,16 @@ import { formatIndianRupees } from "@/lib/formatting";
 import { fetchCategoryBreakdown } from "@/app/scoreboard/actions";
 import CategoryBreakdown from "./CategoryBreakdown";
 
+const rankAccent = (rank: number) =>
+  rank === 1 ? "border-t-2 border-t-yellow-500/70" :
+  rank === 2 ? "border-t-2 border-t-slate-400/60" :
+  rank === 3 ? "border-t-2 border-t-orange-600/60" : "";
+
+const rankColor = (rank: number) =>
+  rank === 1 ? "text-yellow-400 font-semibold" :
+  rank === 2 ? "text-slate-400 font-semibold" :
+  rank === 3 ? "text-orange-400 font-semibold" : "text-dark-muted font-mono";
+
 export default function CompanyScoreCard({
   company,
   rank,
@@ -19,7 +29,6 @@ export default function CompanyScoreCard({
 
   function handleToggle() {
     if (!expanded && categories === null) {
-      // First expand — fetch data via Server Action
       startTransition(async () => {
         const data = await fetchCategoryBreakdown(company.id);
         setCategories(data);
@@ -29,23 +38,23 @@ export default function CompanyScoreCard({
   }
 
   return (
-    <div className="bg-dark-surface border border-dark-border rounded-lg flex flex-col hover:border-brand-navy transition-colors relative">
+    <div className={`bg-dark-s2 border border-dark-border rounded-xl min-h-[180px] flex flex-col hover:bg-dark-s-hover hover:-translate-y-px hover:shadow-md hover:shadow-black/8 transition-all relative ${rankAccent(rank)}`}>
       {/* Main card body */}
       <div className="p-4 flex flex-col gap-3">
-        {/* Rank badge */}
-        <span className="absolute top-3 right-3 text-dark-muted text-xs font-mono">
+        {/* Rank badge — absolute top-right */}
+        <span className={`absolute top-3 right-3 text-xs ${rankColor(rank)}`}>
           #{rank}
         </span>
 
         {/* Domain pill */}
         {company.domain && (
-          <span className="bg-dark-bg text-dark-muted text-xs px-2 py-0.5 rounded-full truncate mr-6">
+          <span className="bg-dark-s0 text-dark-muted text-xs px-2 py-0.5 rounded-lg truncate mr-6">
             {company.domain.icon} {company.domain.name}
           </span>
         )}
 
         {/* Company name */}
-        <h3 className="text-dark-pop font-bold text-sm line-clamp-2 leading-snug">
+        <h3 className="text-dark-pop font-semibold text-sm line-clamp-2 leading-snug">
           {company.name}
         </h3>
 

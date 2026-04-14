@@ -32,16 +32,16 @@ export default function DomainTabs({
     scrollRef.current?.scrollBy({ left: dir === "left" ? -200 : 200, behavior: "smooth" });
   }
 
-  const btnBase = "flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap";
-  const btnActive = "bg-brand-navy text-white";
-  const btnInactive = "bg-dark-surface border border-dark-border text-dark-muted hover:border-brand-navy hover:text-dark-pop";
+  const btnBase = "flex-shrink-0 py-1.5 px-3 rounded-lg text-sm font-medium transition-colors whitespace-nowrap cursor-pointer";
+  const btnActive = "bg-brand-teal text-white";
+  const btnInactive = "border border-dark-border text-dark-muted hover:bg-dark-s2 hover:text-dark-pop";
 
   return (
-    <div className="relative flex items-center gap-1 mb-6">
+    <div className="relative flex items-center gap-1.5 mb-6">
       {/* Left arrow */}
       <button
         onClick={() => scroll("left")}
-        className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full bg-dark-surface border border-dark-border text-dark-muted hover:text-dark-pop hover:border-brand-navy transition-colors"
+        className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-dark-s1 border border-dark-border text-dark-muted hover:text-dark-pop hover:bg-dark-s2 transition-colors"
         aria-label="Scroll left"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@ export default function DomainTabs({
       {/* Right arrow */}
       <button
         onClick={() => scroll("right")}
-        className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full bg-dark-surface border border-dark-border text-dark-muted hover:text-dark-pop hover:border-brand-navy transition-colors"
+        className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-dark-s1 border border-dark-border text-dark-muted hover:text-dark-pop hover:bg-dark-s2 transition-colors"
         aria-label="Scroll right"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -42,9 +42,9 @@ export default function CategoryBreakdown({
               {/* Bar row */}
               <div className="flex items-center gap-2">
                 {/* Bar */}
-                <div className="flex-1 h-5 bg-dark-bg rounded overflow-hidden relative">
+                <div className="flex-1 h-5 bg-dark-s0 rounded overflow-hidden relative">
                   <div
-                    className="h-full bg-brand-navy/60 rounded transition-all duration-500 ease-out"
+                    className="h-full bg-brand-teal/40 rounded transition-all duration-500 ease-out"
                     style={{ width: `${pct}%` }}
                   />
                   <span className="absolute inset-0 flex items-center px-2 text-[11px] text-dark-pop font-medium truncate">

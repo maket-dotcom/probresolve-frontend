@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import UpvoteButton from "@/components/UpvoteButton";
 import ReportButton from "@/components/ReportButton";
+import CopyLinkButton from "@/components/CopyLinkButton";
 import { getProblem } from "@/lib/api";
 import { formatDate, formatIndianRupees } from "@/lib/formatting";
 
@@ -62,7 +63,7 @@ export default async function ProblemDetailPage({ params }: Props) {
         }}
       />
 
-      <div className="bg-dark-surface rounded-lg border border-dark-border p-6">
+      <div className="bg-dark-s1 rounded-xl border border-dark-border p-6">
         {/* Header */}
         <div className="flex gap-6">
           {/* Upvote */}
@@ -76,35 +77,35 @@ export default async function ProblemDetailPage({ params }: Props) {
 
           {/* Title + badges */}
           <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-bold text-dark-pop leading-snug">
+            <h1 className="text-xl font-semibold text-dark-pop leading-snug">
               {problem.title}
             </h1>
             <div className="mt-2 flex flex-wrap gap-2 text-xs">
-              <span className="bg-brand-navy/30 text-dark-pop px-2 py-1 rounded-full font-medium">
+              <span className="bg-brand-teal/15 text-brand-teal px-2 py-1 rounded-lg font-medium">
                 {problem.domain.icon} {problem.domain.name}
               </span>
               {problem.company && (
-                <span className="bg-dark-border text-dark-pop px-2 py-1 rounded-full border border-dark-border font-medium">
+                <span className="bg-dark-s-hover text-dark-pop px-2 py-1 rounded-lg border border-dark-border font-medium">
                   🏢 {problem.company.name}
                 </span>
               )}
               {problem.category && (
-                <span className="bg-dark-border text-dark-muted px-2 py-1 rounded-full">
+                <span className="bg-dark-s-hover text-dark-muted px-2 py-1 rounded-lg">
                   {problem.category.name}
                 </span>
               )}
               {problem.is_verified && (
-                <span className="bg-green-900/30 text-green-400 px-2 py-1 rounded-full font-medium">
+                <span className="bg-green-900/30 text-green-400 px-2 py-1 rounded-lg font-medium">
                   ✅ Admin Verified
                 </span>
               )}
               {underReview && (
-                <span className="bg-amber-900/30 text-amber-400 px-2 py-1 rounded-full font-medium">
+                <span className="bg-amber-900/30 text-amber-400 px-2 py-1 rounded-lg font-medium">
                   ⚠️ Under Review
                 </span>
               )}
               {problem.is_resolved && (
-                <span className="bg-brand-green/10 text-brand-green px-2 py-1 rounded-full font-medium">
+                <span className="bg-brand-green/15 text-brand-green px-2 py-1 rounded-lg font-medium">
                   ✓ Resolved
                 </span>
               )}
@@ -173,7 +174,7 @@ export default async function ProblemDetailPage({ params }: Props) {
                     href={ev.file_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-brand-green hover:underline"
+                    className="text-brand-teal hover:underline"
                   >
                     📎 {ev.file_name}
                   </a>
@@ -219,17 +220,20 @@ export default async function ProblemDetailPage({ params }: Props) {
           <span className="text-xs text-dark-muted">
             Something wrong with this complaint?
           </span>
-          <ReportButton
-            problemId={problem.id}
-            alreadyReported={problem.already_reported}
-          />
+          <div className="flex items-center gap-2">
+            <CopyLinkButton />
+            <ReportButton
+              problemId={problem.id}
+              alreadyReported={problem.already_reported}
+            />
+          </div>
         </div>
       </div>
 
       {/* Escalation card */}
       {problem.escalation_links.length > 0 && (
-        <div className="mt-6 bg-dark-surface border border-dark-border rounded-lg p-5">
-          <h2 className="text-sm font-bold text-dark-pop mb-1">
+        <div className="mt-6 bg-dark-s1 border border-dark-border rounded-xl p-5">
+          <h2 className="text-sm font-semibold text-dark-pop mb-1">
             🚨 Where to escalate this complaint
           </h2>
           <p className="text-xs text-dark-muted mb-4">
@@ -238,7 +242,7 @@ export default async function ProblemDetailPage({ params }: Props) {
           <ol className="space-y-4">
             {problem.escalation_links.map((link, i) => (
               <li key={i} className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-navy text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-teal text-white text-xs font-bold flex items-center justify-center mt-0.5">
                   {i + 1}
                 </span>
                 <div className="flex-1 min-w-0">
@@ -246,7 +250,7 @@ export default async function ProblemDetailPage({ params }: Props) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-brand-green hover:underline"
+                    className="text-sm font-semibold text-brand-teal hover:underline"
                   >
                     {link.name} ↗
                   </a>

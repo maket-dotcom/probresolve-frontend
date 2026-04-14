@@ -66,26 +66,26 @@ describe("DomainTabs — active state", () => {
   it("'All' button has active style when no activeDomainId", () => {
     render(<DomainTabs domains={mockDomains} />);
     const allButton = screen.getByText("All");
-    expect(allButton.className).toContain("bg-brand-navy");
+    expect(allButton.className).toContain("bg-brand-teal");
   });
 
   it("'All' button has inactive style when activeDomainId is set", () => {
     render(<DomainTabs domains={mockDomains} activeDomainId="d1" />);
     const allButton = screen.getByText("All");
-    expect(allButton.className).not.toContain("bg-brand-navy");
-    expect(allButton.className).toContain("bg-white");
+    expect(allButton.className).not.toContain("bg-brand-teal");
+    expect(allButton.className).toContain("border");
   });
 
   it("active domain button has active style", () => {
     render(<DomainTabs domains={mockDomains} activeDomainId="d1" />);
     const activeButton = screen.getByText(/E-Commerce Fraud/);
-    expect(activeButton.className).toContain("bg-brand-navy");
+    expect(activeButton.className).toContain("bg-brand-teal");
   });
 
   it("inactive domain buttons have inactive style", () => {
     render(<DomainTabs domains={mockDomains} activeDomainId="d1" />);
     const inactiveButton = screen.getByText(/Banking Issues/);
-    expect(inactiveButton.className).toContain("bg-white");
+    expect(inactiveButton.className).toContain("border");
   });
 });
 

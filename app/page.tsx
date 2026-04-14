@@ -33,7 +33,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     <>
       {/* Hero section */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-dark-pop mb-2">Consumer Complaint Board</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-dark-pop mb-2">Consumer Complaint Board</h1>
         <p className="text-dark-muted text-sm mb-6">
           Browse fraud reports from across India. Upvote to amplify. Hold companies accountable.
         </p>
@@ -42,18 +42,18 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
             name="q"
             type="search"
             placeholder="Search company names, fraud types…"
-            className="flex-1 bg-dark-surface border border-dark-border rounded-l-lg px-4 py-3 text-sm text-dark-pop placeholder:text-dark-muted focus:outline-none focus:ring-1 focus:ring-brand-navy"
+            className="flex-1 bg-dark-s0 border border-dark-border rounded-l-md px-4 py-3 text-sm text-dark-pop placeholder:text-dark-muted focus:outline-none focus:border-brand-teal"
           />
           <button
             type="submit"
-            className="bg-brand-navy text-white px-5 py-3 text-sm font-medium rounded-r-lg hover:bg-brand-navy/90"
+            className="bg-brand-teal hover:bg-brand-teal-h text-white px-5 py-3 text-sm font-medium rounded-r-md transition-colors"
           >
             Search
           </button>
         </form>
         <Link
           href="/scoreboard"
-          className="text-brand-green hover:text-brand-green/80 text-sm font-medium"
+          className="text-brand-teal hover:text-brand-teal-h text-sm font-medium transition-colors"
         >
           View Scoreboard →
         </Link>
@@ -67,12 +67,21 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
       {/* Problem list */}
       <div className="space-y-4">
         {problems.length === 0 ? (
-          <p className="text-dark-muted py-12 text-center">
-            No complaints yet.{" "}
-            <Link href="/problems/new" className="text-brand-orange hover:underline">
-              Be the first to post one.
+          <div className="py-20 flex flex-col items-center gap-3 text-center">
+            <div className="w-14 h-14 rounded-full bg-dark-s1 border border-dark-border flex items-center justify-center text-3xl">
+              📭
+            </div>
+            <p className="text-dark-pop font-semibold text-sm">No complaints yet</p>
+            <p className="text-dark-muted text-xs max-w-xs leading-relaxed">
+              Be the first to document a fraud or consumer experience in this category.
+            </p>
+            <Link
+              href="/problems/new"
+              className="mt-1 bg-brand-teal hover:bg-brand-teal-h text-white text-sm px-5 py-2 rounded-full font-semibold transition-colors"
+            >
+              + Post a Complaint
             </Link>
-          </p>
+          </div>
         ) : (
           problems.map((p) => <ProblemCard key={p.id} problem={p} />)
         )}
@@ -80,11 +89,11 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
       {/* Pagination */}
       {(prevPage || nextPage) && (
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-8 flex justify-center gap-3">
           {prevPage && (
             <Link
               href={pageUrl(prevPage)}
-              className="bg-dark-surface border border-dark-border text-dark-pop px-6 py-2 rounded hover:bg-dark-border/50 text-sm"
+              className="bg-dark-s1 border border-dark-border text-dark-pop px-5 py-2 rounded-lg hover:bg-dark-s2 text-sm transition-colors"
             >
               ← Previous
             </Link>
@@ -92,9 +101,9 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           {nextPage && (
             <Link
               href={pageUrl(nextPage)}
-              className="bg-dark-surface border border-dark-border text-dark-pop px-6 py-2 rounded hover:bg-dark-border/50 text-sm"
+              className="bg-dark-s1 border border-dark-border text-dark-pop px-5 py-2 rounded-lg hover:bg-dark-s2 text-sm transition-colors"
             >
-              Load more →
+              Next →
             </Link>
           )}
         </div>

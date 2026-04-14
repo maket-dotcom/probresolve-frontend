@@ -55,7 +55,7 @@ export default function ReportButton({
         <select
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          className="bg-dark-bg border border-dark-border text-dark-pop rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-brand-navy"
+          className="bg-dark-s0 border border-dark-border text-dark-pop rounded-md px-2 py-1 text-sm focus:outline-none focus:border-brand-teal"
         >
           {REASONS.map((r) => (
             <option key={r.value} value={r.value}>
@@ -66,13 +66,13 @@ export default function ReportButton({
         <button
           onClick={handleReport}
           disabled={loading}
-          className="bg-brand-orange text-white px-3 py-1 rounded text-sm hover:bg-brand-orange/90 disabled:opacity-50"
+          className="bg-brand-teal text-white px-3 py-1 rounded-md text-sm hover:bg-brand-teal-h disabled:opacity-50 transition-colors"
         >
           {loading ? "Submitting…" : "Submit"}
         </button>
         <button
           onClick={() => setShowForm(false)}
-          className="text-dark-muted hover:text-dark-pop text-sm"
+          className="text-dark-muted hover:text-dark-pop text-sm transition-colors"
         >
           Cancel
         </button>

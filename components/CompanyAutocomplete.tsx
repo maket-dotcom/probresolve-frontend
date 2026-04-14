@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+// State reset on domainId change is handled by the parent passing key={companyKey}
 import type { Company } from "@/lib/types";
 
 interface Props {
@@ -12,11 +13,6 @@ export default function CompanyAutocomplete({ domainId }: Props) {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [query, setQuery] = useState("");
   const disabled = !domainId;
-
-  useEffect(() => {
-    setQuery("");
-    setCompanies([]);
-  }, [domainId]);
 
   useEffect(() => {
     if (!domainId) return;
@@ -52,7 +48,7 @@ export default function CompanyAutocomplete({ domainId }: Props) {
             ? "Select a domain first"
             : "e.g. Amazon India, HDFC Bank..."
         }
-        className={`w-full bg-dark-bg border border-dark-border text-dark-pop rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-brand-navy placeholder:text-dark-muted ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`w-full bg-dark-s0 border border-dark-border text-dark-pop rounded-md px-3 py-2 text-sm focus:outline-none focus:border-brand-teal placeholder:text-dark-muted ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         autoComplete="off"
