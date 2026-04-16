@@ -2,6 +2,8 @@
 
 import { redirect } from "next/navigation";
 
+import { createClient } from "@/utils/supabase/server";
+
 export async function createProblem(formData: FormData) {
   const API = process.env.API_URL || "http://localhost:8000";
 
@@ -13,9 +15,18 @@ export async function createProblem(formData: FormData) {
     cleaned.append(key, value);
   }
 
+  const supabase = await createClient();
+  const { data: { session } } = await supabase.auth.getSession();
+
+  const headers: Record<string, string> = {};
+  if (session?.access_token) {
+    headers["Authorization"] = `Bearer ${session.access_token}`;
+  }
+
   const res = await fetch(`${API}/api/problems`, {
     method: "POST",
     body: cleaned,
+    headers,
   });
 
   if (!res.ok) {

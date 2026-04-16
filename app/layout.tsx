@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { createClient } from "@/utils/supabase/server";
+import { logout } from "@/app/login/actions";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,7 +13,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <html lang="en">
       <body className="bg-dark-bg text-dark-pop min-h-screen flex flex-col">
@@ -43,11 +48,41 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </form>
 
               <Link
+                href="/"
+                className="text-dark-muted hover:text-dark-pop text-sm font-medium transition-colors hidden sm:block"
+              >
+                Complaints
+              </Link>
+
+              <Link
                 href="/scoreboard"
                 className="text-dark-muted hover:text-dark-pop text-sm font-medium transition-colors hidden sm:block"
               >
                 Scoreboard
               </Link>
+              
+              {user ? (
+                <div className="flex items-center gap-3">
+                 <Link
+                   href="/dashboard"
+                   className="text-dark-muted hover:text-dark-pop text-sm font-medium transition-colors hidden sm:block"
+                 >
+                   My Dashboard
+                 </Link>
+                 <form action={logout}>
+                   <button className="text-dark-muted hover:text-dark-pop text-sm font-medium transition-colors hidden sm:block pt-0.5">
+                     Logout
+                   </button>
+                 </form>
+                </div>
+              ) : (
+                <Link
+                   href="/login"
+                   className="text-dark-muted hover:text-dark-pop text-sm font-medium transition-colors hidden sm:block"
+                 >
+                   Sign In
+                 </Link>
+              )}
 
               <Link
                 href="/problems/new"
